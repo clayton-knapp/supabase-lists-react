@@ -1,23 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
+import MicrophoneList from './MicrophoneList';
+
+import { fetchMicrophones } from './services/fetch-utils';
+
+
 
 function App() {
+  //STATE
+  const [microphones, setMicrophones] = useState([]);
+
+
+  //STORE IN STATE FUNCTIONS 
+
+  async function storeMicrophones() {
+    //calls our fetch function & stores data in temp variable
+    const data = await fetchMicrophones();
+
+    //stores the data in React state
+    setMicrophones(data);
+  }
+
+
+
+  //useEffect On Load
+  useEffect(() => {
+    storeMicrophones();
+    // return () => {
+    //   second;
+    // };
+  }, []);
+  
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MicrophoneList
+        microphones={microphones}
+      />
     </div>
   );
 }

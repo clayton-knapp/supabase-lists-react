@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+html, body, #root, .App {
+  height: 100%;
 }
 
 .App-logo {
@@ -35,4 +42,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.microphone-item {
+  border: 1px solid black;
+  border-radius: 10px;
+  min-width: 200px;
+  margin: 20px;
+}
+
+.list {
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
