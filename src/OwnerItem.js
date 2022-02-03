@@ -5,5 +5,6 @@ export default function OwnerItem({ owner }) {
     <h2>{owner.name}</h2>
     <h3>Ownership: {owner.percentage}</h3>
     <h4>Joined: {owner.year_joined}</h4>
+    <h4>Hair Color: {owner.hair_color}</h4>
   </div>;
 }

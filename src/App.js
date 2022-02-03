@@ -40,7 +40,6 @@ function App() {
   async function storeOwners() {
     const data = await fetchOwners();
     setOwners(data);
-    console.log(data);
   }
 
 
