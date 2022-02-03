@@ -9,3 +9,11 @@ export async function fetchMicrophones() {
 
   return request.data;
 }
+
+export async function fetchPreamps() {
+  const request = await client
+    .from('preamps')
+    .select();
+
+  return request.data;
+}
