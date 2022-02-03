@@ -4,8 +4,10 @@ import { useEffect } from 'react';
 
 import MicrophoneList from './MicrophoneList';
 import PreampsList from './PreampsList';
+import CompressorsList from './CompressorsList';
+import OwnersList from './OwnersList';
 
-import { fetchMicrophones, fetchPreamps } from './services/fetch-utils';
+import { fetchCompressorsAndOwners, fetchMicrophones, fetchOwners, fetchPreamps } from './services/fetch-utils';
 
 
 
@@ -13,6 +15,8 @@ function App() {
   //STATE
   const [microphones, setMicrophones] = useState([]);
   const [preamps, setPreamps] = useState([]);
+  const [compressors, setCompressors] = useState([]);
+  const [owners, setOwners] = useState([]);
 
 
   //STORE IN STATE FUNCTIONS 
@@ -28,6 +32,16 @@ function App() {
     setPreamps(data);
   }
 
+  async function storeCompressors() {
+    const data = await fetchCompressorsAndOwners();
+    setCompressors(data);
+  }
+
+  async function storeOwners() {
+    const data = await fetchOwners();
+    setOwners(data);
+    console.log(data);
+  }
 
 
   //useEffect On Load
@@ -35,7 +49,11 @@ function App() {
     //calls store microphones
     storeMicrophones();
     storePreamps();
+    storeCompressors();
+    storeOwners();
   }, []);
+
+
   
     //I think this would be acceptable?
   // useEffect(storeMicrophones, []);
@@ -50,6 +68,12 @@ function App() {
       />
       <PreampsList
         preamps={preamps}
+      />
+      <CompressorsList
+        compressors={compressors}
+      />
+      <OwnersList
+        owners={owners}
       />
 
     </div>
